@@ -7,28 +7,28 @@ class BowlingGame {
     }
 
     private var score: Int = 0
-    private var frameTimes = 0
+    private var currentFrame = 0
     private var frames: MutableList<Frame> = mutableListOf()
 
     fun roll(frame: Frame) {
-        frameTimes++
+        currentFrame++
 
         frames.add(frame)
     }
 
     fun score(): Int {
-        frames.forEachIndexed { i, frame ->
+        frames.forEachIndexed { currentFrame, frame ->
             score += when (frame.type()) {
                 Type.Strike -> 10
-                Type.Nothing -> frame.score()
                 Type.Spare -> 10
+                Type.Normal -> frame.score()
             }
         }
         return score
     }
 
     fun frame(): Int {
-        return  frameTimes
+        return  currentFrame
     }
 
 //    fun bonus(): Int {
@@ -46,7 +46,7 @@ data class Frame(val rollPins: Array<Int>) {
         } else if( rollPins.size == 1 && rollPins[0] == 10){
             return Type.Strike
         }
-        return Type.Nothing
+        return Type.Normal
     }
 
     fun score(): Int {
@@ -58,5 +58,5 @@ data class Frame(val rollPins: Array<Int>) {
 enum class Type {
     Strike,
     Spare,
-    Nothing
+    Normal
 }
