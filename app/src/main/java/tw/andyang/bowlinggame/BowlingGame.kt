@@ -6,10 +6,15 @@ class BowlingGame {
         const val TOTAL_FRAMES = 10
     }
 
-    fun roll(pins: Int) {
+    private var score: Int = 0
+
+    fun roll(frame: Frame) {
+
     }
 
-    fun scores(): Int {
-        return 0
+    fun score(): Int {
+        return score
     }
 }
+
+data class Frame(val index: Int, val rollPins: Array<Int>)
