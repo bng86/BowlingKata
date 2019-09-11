@@ -42,7 +42,12 @@ class BowlingGameTest {
 
     @Test
     fun `roll 2 times and total pins is 10 will show "spare"`() {
-        val frame = Frame( 0, arrayOf(10, 0))
+        val frame = Frame( 0, arrayOf(5,5))
         assertEquals(Type.Spare, frame.type())
+    }
+
+    @Test
+    fun `roll 2 times and total pins is 6 will show grade`(){
+
     }
 }

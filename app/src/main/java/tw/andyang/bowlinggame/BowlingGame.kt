@@ -21,6 +21,9 @@ class BowlingGame {
 
 data class Frame(val index: Int, val rollPins: Array<Int>) {
     fun type(): Type {
+        if(rollPins.size==2 && rollPins[0]+rollPins[1]==10){
+            return Type.Spare
+        }
         return Type.Strike
     }
 }
