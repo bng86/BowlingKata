@@ -9,7 +9,9 @@ class BowlingGame {
     private var score: Int = 0
 
     fun roll(frame: Frame) {
-
+        frame.rollPins.forEach { pins ->
+            score += pins
+        }
     }
 
     fun score(): Int {
