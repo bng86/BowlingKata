@@ -9,10 +9,15 @@ class BowlingGame {
     private var score: Int = 0
     private var frameTimes = 0
 
-    fun roll(frame: Frame) {
+    fun roll(frame: Frame): Frame? {
         frameTimes++
         frame.rollPins.forEach { pins ->
             score += pins
+        }
+        if (frame.type() == Type.Strike) {
+            return null
+        } else {
+            return null
         }
     }
 
@@ -24,15 +29,15 @@ class BowlingGame {
         return  frameTimes
     }
 
-    fun bonus(): Int {
-        if (frame() == 10)
-        {
-           TODO()
-        }
-    }
+//    fun bonus(): Int {
+//        if (frame() == 10)
+//        {
+//           TODO()
+//        }
+//    }
 }
 
-data class Frame(val index: Int, val rollPins: Array<Int>) {
+data class Frame(val rollPins: Array<Int>) {
     fun type(): Type {
         if(rollPins.size==2 && rollPins[0]+rollPins[1]==10){
             return Type.Spare
