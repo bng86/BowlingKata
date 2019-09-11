@@ -22,8 +22,14 @@ class BowlingGame {
             score += when (frame.type()) {
                 Type.Strike -> {
                     var currentScore=10
-                    if(currentFrame+1<size){
-                        currentScore+=frames[currentFrame+1].score()
+                    var bounsBall = 0
+                    if(frames.getOrNull(currentFrame + 1) != null){
+                        if (frames[currentFrame + 1].type() == Type.Strike){
+                            currentScore += 10
+                            bounsBall++
+                        } else {
+                            currentFrame + frames[currentFrame + 1].score()
+                        }
                     }
                     return currentScore
                 }
