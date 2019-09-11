@@ -47,7 +47,16 @@ class BowlingGameTest {
     }
 
     @Test
-    fun `roll 2 times and total pins is 6 will show grade`(){
+    fun `roll 2 times and total pins is 6 will show nothing`(){
+        val frame = Frame( 0, arrayOf(4,2))
+        assertEquals(Type.Nothing, frame.type())
+    }
 
+    @Test
+    fun `check Frame is 10`(){
+        for (i in 0 until BowlingGame.TOTAL_FRAMES) {
+            game.roll(Frame(i, arrayOf(0,0)))
+        }
+        assertEquals(10, game.frame())
     }
 }

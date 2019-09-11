@@ -7,6 +7,7 @@ class BowlingGame {
     }
 
     private var score: Int = 0
+    private var frameTimes = 0
 
     fun roll(frame: Frame) {
         frame.rollPins.forEach { pins ->
@@ -17,18 +18,25 @@ class BowlingGame {
     fun score(): Int {
         return score
     }
+
+    fun frame(): Int {
+        return  frameTimes
+    }
 }
 
 data class Frame(val index: Int, val rollPins: Array<Int>) {
     fun type(): Type {
         if(rollPins.size==2 && rollPins[0]+rollPins[1]==10){
             return Type.Spare
+        } else if( rollPins.size == 1 && rollPins[0] == 10){
+            return Type.Strike
         }
-        return Type.Strike
+        return Type.Nothing
     }
 }
 
 enum class Type {
     Strike,
-    Spare
+    Spare,
+    Nothing
 }
