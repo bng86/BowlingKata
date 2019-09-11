@@ -10,6 +10,7 @@ class BowlingGame {
     private var frameTimes = 0
 
     fun roll(frame: Frame) {
+        frameTimes++
         frame.rollPins.forEach { pins ->
             score += pins
         }
@@ -21,6 +22,13 @@ class BowlingGame {
 
     fun frame(): Int {
         return  frameTimes
+    }
+
+    fun bonus(): Int {
+        if (frame() == 10)
+        {
+           TODO()
+        }
     }
 }
 

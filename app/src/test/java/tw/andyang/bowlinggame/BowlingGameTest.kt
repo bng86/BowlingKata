@@ -59,4 +59,12 @@ class BowlingGameTest {
         }
         assertEquals(10, game.frame())
     }
+
+    @Test
+    fun `test all strike total score is 300`() {
+        for (i in 0 until BowlingGame.TOTAL_FRAMES) {
+            game.roll(Frame(i, arrayOf(10)))
+        }
+        assertEquals(300, game.score())
+    }
 }
