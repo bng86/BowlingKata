@@ -8,20 +8,21 @@ class BowlingGame {
 
     private var score: Int = 0
     private var frameTimes = 0
+    private var frames: MutableList<Frame> = mutableListOf()
 
-    fun roll(frame: Frame): Frame? {
+    fun roll(frame: Frame) {
         frameTimes++
-        frame.rollPins.forEach { pins ->
-            score += pins
-        }
-        if (frame.type() == Type.Strike) {
-            return null
-        } else {
-            return null
-        }
+
+        frames.add(frame)
     }
 
     fun score(): Int {
+        frames.forEachIndexed { i, frame ->
+            frame.rollPins.forEach { pins ->
+                score += pins
+            }
+        }
+
         return score
     }
 

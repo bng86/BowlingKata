@@ -63,7 +63,6 @@ class BowlingGameTest {
     }
 
     @Test
-    @Ignore
     fun `test all strike total score is 300`() {
         for (i in 0 until BowlingGame.TOTAL_FRAMES) {
             game.roll(Frame(arrayOf(10)))
