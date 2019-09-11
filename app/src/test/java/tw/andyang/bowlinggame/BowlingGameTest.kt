@@ -1,10 +1,17 @@
 package tw.andyang.bowlinggame
 
 import junit.framework.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 
 class BowlingGameTest {
 
+    private lateinit var  game: BowlingGame
+
+    @Before
+    fun setUp() {
+        game = BowlingGame()
+    }
 
     @Test
     fun `test game frames is 10`() {
@@ -13,7 +20,6 @@ class BowlingGameTest {
 
     @Test
     fun `test all roll is zero then got score zero`() {
-        val game = BowlingGame()
         for (i in 0 until BowlingGame.TOTAL_FRAMES) {
             game.roll(Frame(i, arrayOf(0,0)))
         }
@@ -22,7 +28,6 @@ class BowlingGameTest {
 
     @Test
     fun `test all roll is 1 then got score 20`() {
-        val game = BowlingGame()
         for (i in 0 until BowlingGame.TOTAL_FRAMES) {
             game.roll(Frame(i, arrayOf(1, 1)))
         }
@@ -31,8 +36,13 @@ class BowlingGameTest {
 
     @Test
     fun `test roll 10 pins will show "strike"`() {
-        val game = BowlingGame()
-        game.roll(Frame(0, arrayOf(10)))
-        assertEquals(10, game.score())
+        val frame = Frame( 0, arrayOf(10))
+        assertEquals(Type.Strike, frame.type())
+    }
+
+    @Test
+    fun `roll 2 times and total pins is 10 will show "spare"`() {
+        val frame = Frame( 0, arrayOf(10, 0))
+        assertEquals(Type.Spare, frame.type())
     }
 }

@@ -19,4 +19,13 @@ class BowlingGame {
     }
 }
 
-data class Frame(val index: Int, val rollPins: Array<Int>)
+data class Frame(val index: Int, val rollPins: Array<Int>) {
+    fun type(): Type {
+        return Type.Strike
+    }
+}
+
+enum class Type {
+    Strike,
+    Spare
+}
