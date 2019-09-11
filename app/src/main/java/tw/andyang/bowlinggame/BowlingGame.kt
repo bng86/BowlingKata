@@ -17,9 +17,16 @@ class BowlingGame {
     }
 
     fun score(): Int {
+        val size= frames.size
         frames.forEachIndexed { currentFrame, frame ->
             score += when (frame.type()) {
-                Type.Strike -> 10
+                Type.Strike -> {
+                    var currentScore=10
+                    if(currentFrame+1<size){
+                        currentScore+=frames[currentFrame+1].score()
+                    }
+                    return currentScore
+                }
                 Type.Spare -> 10
                 Type.Normal -> frame.score()
             }
