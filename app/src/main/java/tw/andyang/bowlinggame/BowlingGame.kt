@@ -18,11 +18,12 @@ class BowlingGame {
 
     fun score(): Int {
         frames.forEachIndexed { i, frame ->
-            frame.rollPins.forEach { pins ->
-                score += pins
+            score += when (frame.type()) {
+                Type.Strike -> 10
+                Type.Nothing -> frame.score()
+                Type.Spare -> 10
             }
         }
-
         return score
     }
 
@@ -47,6 +48,11 @@ data class Frame(val rollPins: Array<Int>) {
         }
         return Type.Nothing
     }
+
+    fun score(): Int {
+        return rollPins.sum()
+    }
+
 }
 
 enum class Type {

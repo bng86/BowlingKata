@@ -77,4 +77,11 @@ class BowlingGameTest {
 
         assertNotNull(bonus)
     }
+
+    @Test
+    fun `in one frame rollpins 1 and 2 , get 3 score`() {
+        val frame = Frame(arrayOf(1, 2))
+
+        assertEquals(3, frame.score())
+    }
 }
