@@ -1,10 +1,15 @@
 package tw.andyang.bowlinggame
 
-class BowlingGame() {
-    fun roll(): String? {
+class BowlingGame {
 
-        return ""
+    companion object {
+        const val TOTAL_FRAMES = 10
     }
 
-    val totalFrames: Int = 10
+    fun roll(pins: Int) {
+    }
+
+    fun scores(): Int {
+        return 0
+    }
 }

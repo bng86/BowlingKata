@@ -3,18 +3,29 @@ package tw.andyang.bowlinggame
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 
-class BowlingGameTest{
+class BowlingGameTest {
 
 
     @Test
-    fun testFrames() {
-        val game = BowlingGame()
-        assertEquals(10, game.totalFrames)
+    fun `test game frames is 10`() {
+        assertEquals(10, BowlingGame.TOTAL_FRAMES)
     }
 
     @Test
-    fun testRollResult() {
+    fun `test all roll is zero then got score zero`() {
         val game = BowlingGame()
-        assertEquals("spare", game.roll())
+        for (i in 0 until 20) {
+            game.roll(0)
+        }
+        assertEquals(0, game.scores())
+    }
+
+    @Test
+    fun `test all roll is 1 then got score 20`() {
+        val game = BowlingGame()
+        for (i in 0 until 20) {
+            game.roll(1)
+        }
+        assertEquals(20, game.scores())
     }
 }
